@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   var apiRoot = 'https://shielded-chamber-92843.herokuapp.com/v1/task/';
-  const trelloApiRoot = 'http://localhost:8888/v1/trello/';
+  const trelloApiRoot = 'https://shielded-chamber-92843.herokuapp.com/v1/trello/';
   const datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
   const $tasksContainer = $('[data-tasks-container]');
 
