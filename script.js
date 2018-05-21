@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  const apiRoot = 'http://localhost:8880/v1/';
-  const trelloApiRoot = 'http://localhost:8880/v1/trello/';
+ var apiRoot = 'https://shielded-chamber-92843.herokuapp.com/v1/';
+  const trelloApiRoot = 'https://shielded-chamber-92843.herokuapp.com/v1/trello/';
   const datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
   const $tasksContainer = $('[data-tasks-container]');
 
@@ -111,7 +111,9 @@ $(document).ready(function() {
     var requestUrl = apiRoot + 'tasks';
 
     $.ajax({
-      url: requestUrl + '/' + taskId,
+      url: requestUrl + '/' + $.param({
+        taskId: taskId
+      }),
       method: 'DELETE',
       success: function() {
         parentEl.slideUp(400, function() { parentEl.remove(); });
@@ -137,11 +139,7 @@ $(document).ready(function() {
         title: taskTitle,
         content: taskContent
       }),
-      complete: function(data) {
-        if(data.status === 200) {
-          getAllTasks();
-        }
-      }
+      success: getAllTasks
     });
   }
 
