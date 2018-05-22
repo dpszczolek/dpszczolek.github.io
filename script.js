@@ -1,10 +1,10 @@
 $(document).ready(function() {
- var apiRoot = 'https://shielded-chamber-92843.herokuapp.com/v1/';
-  const trelloApiRoot = 'https://shielded-chamber-92843.herokuapp.com/v1/trello/';
+  const apiRoot = 'http://localhost:8880/v1/';
+  const trelloApiRoot = 'http://localhost:8880/v1/trello/';
   const datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
   const $tasksContainer = $('[data-tasks-container]');
 
-  var availableBoards = {};
+   var availableBoards = {};
   var availableTasks = {};
 
   // init
@@ -111,9 +111,7 @@ $(document).ready(function() {
     var requestUrl = apiRoot + 'tasks';
 
     $.ajax({
-      url: requestUrl + '/' + $.param({
-        taskId: taskId
-      }),
+      url: requestUrl + '/' + taskId,
       method: 'DELETE',
       success: function() {
         parentEl.slideUp(400, function() { parentEl.remove(); });
